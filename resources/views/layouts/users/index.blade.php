@@ -1,11 +1,9 @@
+@extends('layouts.app')
 <x-app-layout>
     <x-slot name="header">
         @section('header')
-            Dashboard
+            Manage Users
         @endsection
     </x-slot>
 
-    @section('slot')
-        You're log in!!
-    @endsection
 </x-app-layout>

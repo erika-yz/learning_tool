@@ -2,10 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\RoleController;
-use App\Http\Contollers\UserController;
-use App\Http\Controllers\TopicController;
+// use App\Http\Controllers\DashboardController;
+// use App\Http\Controllers\RoleController;
+// use App\Http\Controllers\TopicController;
 
 
 /*
@@ -26,13 +25,15 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
      return view('dashboard');
  })->middleware(['auth'])->name('dashboard');
+ 
 
 
 
-Route::group(['middleware' => ['auth']], function() {
-    Route::resource('roles', 'RoleController');
-    Route::resource('users', 'UserController');
-    Route::resource('topics', 'TopicController');
-});
+ 
+  Route::group(['middleware' => ['auth']], function() {
+      Route::resource('roles', 'RoleController');
+      Route::resource('/users','App\Http\Controllers\UserController');
+      Route::resource('topics', 'TopicController');
+  });
 
 require __DIR__.'/auth.php';

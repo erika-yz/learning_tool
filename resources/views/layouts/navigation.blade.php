@@ -44,10 +44,9 @@
                             </x-dropdown-link>
                         </form>
 
-                        <x-dropdown-link :href="route('users.index')">
+                         <x-dropdown-link :href="route('users.index')">
                             {{ __('Manage Users') }}
                         </x-dropdown-link>
-                        
 
                     </x-slot>
                 </x-dropdown>
