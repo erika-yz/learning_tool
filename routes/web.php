@@ -2,6 +2,12 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\RoleController;
+use App\Http\Contollers\UserController;
+use App\Http\Controllers\TopicController;
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,7 +24,15 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+     return view('dashboard');
+ })->middleware(['auth'])->name('dashboard');
+
+
+
+Route::group(['middleware' => ['auth']], function() {
+    Route::resource('roles', 'RoleController');
+    Route::resource('users', 'UserController');
+    Route::resource('topics', 'TopicController');
+});
 
 require __DIR__.'/auth.php';

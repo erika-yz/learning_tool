@@ -8,6 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Topic extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'topic_name',
+        'topic_description',
+    ];
+
     public function users(){
         return $this->belongsToMany(User::class);
     }

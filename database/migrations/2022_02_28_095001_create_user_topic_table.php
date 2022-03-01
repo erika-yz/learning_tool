@@ -15,12 +15,17 @@ return new class extends Migration
     {
         Schema::create('user_topic', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id')->unsigned();
-            $table->integer('topic_id')->unsigned();
-            $table->dateTime('last_accessed');
-            $table->text('comment');
-            $table->timestamps();
-        });
+
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('topic_id');
+
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('topic_id')->references('id')->on('topics');
+
+             $table->dateTime('last_accessed');
+             $table->string('comment');
+             $table->timestamps();
+         });
     }
 
     /**
