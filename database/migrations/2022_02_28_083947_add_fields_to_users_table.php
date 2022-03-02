@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             //Add missing fields
-            $table->string('username')->nullable(false);
+            $table->string('username')->nullable(false)->unique();
             $table->string('contact_number');
         });
     }
