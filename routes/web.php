@@ -25,15 +25,11 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
      return view('dashboard');
  })->middleware(['auth'])->name('dashboard');
- 
 
-
-
- 
   Route::group(['middleware' => ['auth']], function() {
-      Route::resource('roles', 'RoleController');
+      Route::resource('/roles', 'App\Http\Controllers\RoleController');
       Route::resource('/users','App\Http\Controllers\UserController');
-      Route::resource('topics', 'TopicController');
+      Route::resource('/topics', 'App\Http\Controllers\RoleController\TopicController');
   });
 
 require __DIR__.'/auth.php';

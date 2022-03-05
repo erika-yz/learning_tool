@@ -38,8 +38,13 @@
                     </x-slot>
 
                     <x-slot name="content">
+                        <!-- Manage Users -->
                         <x-dropdown-link :href="route('users.index')">
                             {{ __('Manage Users') }}
+                        </x-dropdown-link>
+                        <!-- Manage Roles -->
+                        <x-dropdown-link :href="route('roles.index')">
+                            {{ __('Manage Roles') }}
                         </x-dropdown-link>
                         <!-- Authentication -->
                         <form method="POST" action="{{ route('logout') }}">

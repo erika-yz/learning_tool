@@ -20,9 +20,9 @@ class UserController extends Controller
      */
 
      public function index (Request $request){
-        //$users = User::orderBy('id', 'DESC');
-        $users = User::orderBy('username')->get();
-         return view('users.index', compact('users'));
+        $users = User::orderBy('username')->paginate(10);
+        return view('users.index', compact('users'))
+            ->with('i', ($request->input('page', 1) -1) * 10 );
      }
 
      /**
@@ -84,8 +84,8 @@ class UserController extends Controller
     {
         $user = User::find($id);
         $roles = Role::pluck('name','name')->all();
-        $userRole = $user->roles->pluck('name','name')->all();
-
+        $userRole = $user->roles->pluck('name')->first();
+    
         return view('users.edit',compact('user','roles','userRole'));
     }
 

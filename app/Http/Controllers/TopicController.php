@@ -27,9 +27,10 @@ class TopicController extends Controller
      */
     public function index()
     {
-        $topics = Topic::latest()->paginate(5);
-        return view('topics.index',compact('topics'))
-            ->with('i', (request()->input('page', 1) - 1) * 5);
+        $topics = Topic::latest()->orderBy('id', 'ASC')->all;
+        return view('topics.index',compact('topics'));
+        // return view('topics.index',compact('topics'))
+        //     ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     /**
