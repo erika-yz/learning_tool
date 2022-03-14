@@ -17,10 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('topic_name')->nullable(false);
             $table->text('topic_description');
-            $table->dateTime('date_created');
-            $table->dateTime('last_edited');
-            $table->string('created_by');
             $table->timestamps();
+
         });
     }
 

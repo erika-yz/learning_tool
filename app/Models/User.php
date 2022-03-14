@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasRoles;
 
+
 class User extends Authenticatable
 {
     use  HasFactory, Notifiable, HasRoles;
@@ -46,6 +47,7 @@ class User extends Authenticatable
 
     public function topics()
     {
-        return $this->belongsToMany(Topic::class);
+        return $this->belongsToMany(Topic::class)
+                     ->withTimestamps();;
     }
 }

@@ -13,13 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('user_topic', function (Blueprint $table) {
-            $table->id();
-            $table->integer('user_id')->unsigned();
-            $table->integer('topic_id')->unsigned();
-            $table->dateTime('last_accessed');
-            $table->text('comment');
-            $table->timestamps();
+        Schema::table('topics', function (Blueprint $table) {
+            $table->unsignedBigInteger('status_id');
+            $table->foreign('status_id')->references('id')->on('statuses');
         });
     }
 
@@ -30,6 +26,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_topic');
+        Schema::table('topics', function (Blueprint $table) {
+            //
+        });
     }
 };
