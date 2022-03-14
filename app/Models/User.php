@@ -47,6 +47,7 @@ class User extends Authenticatable
 
     public function topics()
     {
-        return $this->belongsToMany(Topic::class);
+        return $this->belongsToMany(Topic::class)
+                     ->withTimestamps();;
     }
 }

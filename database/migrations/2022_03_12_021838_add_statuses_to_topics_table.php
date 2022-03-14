@@ -14,8 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::table('topics', function (Blueprint $table) {
-            //Add status column
-            $table->enum('status', ['Active', 'Inactive', 'Pending']);
+            $table->unsignedBigInteger('status_id');
+            $table->foreign('status_id')->references('id')->on('statuses');
         });
     }
 

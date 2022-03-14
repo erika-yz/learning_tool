@@ -10,8 +10,10 @@
             <div class="grid grid-cols-4 gap-4">
                 <div class="flex items-center justify-center flex-col bg-gray-700 p-4 rounded-lg w-48 space-y-4">
                     <h1 class="text-gray-50 font-semibold">Topics</h1>
-                    <a href="topics.index"
+                    <a href="{{  route('topics.index')  }}"
                         class="px-8 py-1 border-2 border-indigo-600 bg-indigo-600 rounded-full text-gray-50 font-semibold">View</a>
+
+
                 </div>
                 <div class="flex items-center justify-center flex-col bg-gray-700 p-4 rounded-lg w-48 space-y-4">
                     <h1 class="text-gray-50 font-semibold">Sub Topics</h1>

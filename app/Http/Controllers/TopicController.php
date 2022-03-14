@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Tpics;
+use App\Models\Topic;
+use App\Models\User;
+use App\Models\Status;
 use Illuminate\Http\Request;
 
 class TopicController extends Controller
@@ -25,12 +27,10 @@ class TopicController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $topics = Topic::latest()->orderBy('id', 'ASC')->all;
+        $topics = Topic::all()->sortBy('id');
         return view('topics.index',compact('topics'));
-        // return view('topics.index',compact('topics'))
-        //     ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     /**
@@ -40,7 +40,9 @@ class TopicController extends Controller
      */
     public function create()
     {
-        return view('topics.create');
+        // $status = Status::all()->lists('id', 'status_name');
+        $status = Status::all('id', 'status_name');
+        return view('topics.create', compact('status'));
     }
 
     /**
@@ -54,12 +56,18 @@ class TopicController extends Controller
         request()->validate([
             'topic_name' => 'required',
             'topic_description' => 'required',
+            'status_id' => 'required'
         ]);
-
-        Topic::create($request->all());
+        $topic = new Topic;
+        $topic->topic_name = $request->topic_name;
+        $topic->topic_description = $request->topic_description;
+        $topic->status_id = $request->status_id;
+        $topic->save();
+        $user_id = auth()->user()->id;
+        $topic->users()->attach($user_id);
 
         return redirect()->route('topics.index')
-                        ->with('success','Topic created successfully.');
+                       ->with('success','Topic created successfully.');
     }
 
     /**
@@ -110,7 +118,7 @@ class TopicController extends Controller
      * @param  \App\Topic  $topic
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Topic $product)
+    public function destroy(Topic $topic)
     {
         $topic->delete();
 

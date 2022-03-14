@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('user_topic', function (Blueprint $table) {
+        Schema::create('topic_user', function (Blueprint $table) {
             $table->id();
 
             $table->unsignedBigInteger('user_id');
@@ -22,8 +22,6 @@ return new class extends Migration
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('topic_id')->references('id')->on('topics');
 
-             $table->dateTime('last_accessed');
-             $table->string('comment');
              $table->timestamps();
          });
     }

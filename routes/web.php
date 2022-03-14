@@ -29,7 +29,7 @@ Route::get('/dashboard', function () {
   Route::group(['middleware' => ['auth']], function() {
       Route::resource('/roles', 'App\Http\Controllers\RoleController');
       Route::resource('/users','App\Http\Controllers\UserController');
-      Route::resource('/topics', 'App\Http\Controllers\RoleController\TopicController');
+      Route::resource('/topics','App\Http\Controllers\TopicController');
   });
 
 require __DIR__.'/auth.php';
